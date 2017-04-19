@@ -15,6 +15,7 @@
 SoftwareSerial PCss(9, 10);
 RxPacket* rx = new RxPacket(); // instance of RxPackage
 byte buff[100];
+int updateSignal = 0;
 
 void setup() {
   // put your setup code here, to run once:
@@ -89,6 +90,7 @@ void loop() {
       PCss.println(rx->calcChecksum(), HEX);
       if (rx->checkChecksum()) {
         PCss.println("Checksum matched");
+        updateSignal = 1; // Prepare to update tag
       }
       else {
         PCss.println("Checksum not matched, discarding packet");
@@ -96,6 +98,13 @@ void loop() {
       }
     }
   }
+
+  /*
+   * 2. Update tag
+   */
+   if (updateSignal) {
+    
+   }
 }
 
 void debug_printBytes(byte* a, int len)
