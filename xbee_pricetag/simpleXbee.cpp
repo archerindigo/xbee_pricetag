@@ -1,7 +1,5 @@
 #include "simpleXbee.h"
-/*
- * Class for storing Rx Packet
- */
+
 RxPacket::RxPacket()
 {
   

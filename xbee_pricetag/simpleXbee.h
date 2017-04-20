@@ -1,3 +1,8 @@
+/*
+ * Class for holding Rx Packet
+ * Author: Terry Tsang
+ */
+
 #ifndef SIMPLE_XBEE
 #define SIMPLE_XBEE
 

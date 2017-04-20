@@ -1,14 +1,12 @@
 #include <SPI.h>
 #include <Wire.h>
 #include "Adafruit_SSD1306.h"
-//#include <ArduinoJson.h>
 
 #define OLED_RESET 4
 
 extern float price;
 extern char p_name[21];
 extern Adafruit_SSD1306 Display;
-//extern DynamicJsonBuffer jsonBuffer;
 
 String FloatToString(double val, int dec, int dig ) {
   int addpad = 0;

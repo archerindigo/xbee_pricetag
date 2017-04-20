@@ -1,3 +1,8 @@
+/*
+ * Functions for updating the price tag
+ * Author: William Wong
+ */
+
 #ifndef OLED
 #define OLED
 
