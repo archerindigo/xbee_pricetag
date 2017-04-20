@@ -67,7 +67,7 @@ byte RxPacket::getRO()
   return RO;
 }
 
-byte* RxPacket::getData() 
+char* RxPacket::getData() 
 {
   return data;
 }

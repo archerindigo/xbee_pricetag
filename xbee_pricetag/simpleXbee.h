@@ -1,3 +1,6 @@
+#ifndef SIMPLE_XBEE
+#define SIMPLE_XBEE
+
 #if defined(ARDUINO) && ARDUINO >= 100
   #include "Arduino.h"
 #else
@@ -12,7 +15,7 @@ class RxPacket
     byte SA64[8];  // 64-bit address
     byte SA16[2];  // 16-bit address
     byte RO; // receive option
-    byte data[100];
+    char data[60];
     byte checksum;
     
   public:
@@ -29,8 +32,10 @@ class RxPacket
     byte* getSA16();
     byte* getSA64();
     byte getRO();
-    byte* getData();
+    char* getData();
     byte getChecksum();
     bool checkChecksum();
     byte calcChecksum();
 };
+
+#endif
