@@ -9,7 +9,7 @@
 
 void OLED_display();
 
-void Get_JSON(char json[]);
+//void Get_JSON(char json[]);
 
 String FloatToString(double val, int dec, int dig);
 

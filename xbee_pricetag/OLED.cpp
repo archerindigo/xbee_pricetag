@@ -1,7 +1,7 @@
 #include <SPI.h>
 #include <Wire.h>
 #include "Adafruit_SSD1306.h"
-#include <ArduinoJson.h>
+//#include <ArduinoJson.h>
 
 #define OLED_RESET 4
 
@@ -34,14 +34,4 @@ void OLED_display() {
   Display.setCursor(16, 10);
   Display.println(FloatToString(price, 5, 1));
   Display.display();
-}
-
-void Get_JSON(char json[]) {
-  StaticJsonBuffer<5000> jsonBuffer;
-  //DynamicJsonBuffer jsonBuffer;
-  JsonObject& product = jsonBuffer.parseObject(json);
-  //char* p_temp = product["p_name"];
-  //p_name = p_temp;
-  strcpy(p_name, product["p_name"]);
-  price = product["price"];
 }
