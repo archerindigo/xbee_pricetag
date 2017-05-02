@@ -4,7 +4,7 @@ SoftwareSerial PC(9, 10);
 
 void setup() {
   Serial.begin(9600);
-  PC.begin(115200);
+  PC.begin(9600);
   PC.println("Start");
 }
 

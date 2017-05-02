@@ -14,7 +14,7 @@ Group members:
 - Alan Chan
 - Alison Wong
 
-### Update Notes
+### Update Notes for Arduino controller (xbee_pricetag)
 **v0.1.1 (21/4/2017)**
 [Bug fix]
 - Resolved memory leak by ArduinoJSON and RxPacket
@@ -22,7 +22,7 @@ Group members:
 [Miscellaneous]
 - Provided switch of debug message on software serial pin 9, 10
 
-[Knowne issues]
+[Known issues]
 - Insufficient memory on Arduino Uno. Should migrate to Arduino Mega in the future
 - Funduino Xbee shield routes XBee's UART to Arduino pin 0 and 1 only which make UART NFC module unable to be used on Arduino UNO, which has only 1 UART
 
@@ -34,3 +34,7 @@ Group members:
 [Known issues]
 - Memory leak occurs when using ArduinoJSON libraray to prase data
 - High memory usage by ArduinoJSON and Adafruit_SSD1306 OLED driver
+
+### Update Notes for Console Program (xbee_pricetag_console)
+**v0.1.0 (2/5/2017)**
+- First version with full function
