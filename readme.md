@@ -36,5 +36,12 @@ Group members:
 - High memory usage by ArduinoJSON and Adafruit_SSD1306 OLED driver
 
 ### Update Notes for Console Program (xbee_pricetag_console)
+**v0.1.1 (2/5/2017)**
+[New features]
+- Increase/Decrease all prices by 10%
+
+[Known issues]
+- Coordinator may not response in time when tramitting a frame to a non-exist address, leading to synchronzation miss. Should wait for transmit status frame after sending each frame.
+
 **v0.1.0 (2/5/2017)**
 - First version with all basic function implemented (Expect increse/decrease all price)

@@ -15,6 +15,7 @@ import sqlite3
 import serial
 import struct
 import json
+#from xbee import XBee
 
 dictPricetag = {}	# [addr64] = product_id
 dictProduct = {}	# [product_id] = (product_disp_name, price, key_ProductList)
@@ -105,12 +106,14 @@ def syncAllTag():
 		svStatusBar.set("Error: Unable to connect Xbee device!")
 		tkMessageBox.showerror("Error", "Failed to connect to COM port!")
 		return
+	#xbee = XBee(COM)
 		
 	svStatusBar.set("Synchronizing all pricetags...")
 	
 	# retrieve all pricetags
 	cur.execute("SELECT addr64, product_disp_name, price FROM pricetag LEFT JOIN product ON product.product_id = pricetag.product_id")
 	rows = cur.fetchall()
+	print rows
 	for row in rows:
 		if not row[1]:
 			# Set pricetags which have no product info
@@ -120,6 +123,8 @@ def syncAllTag():
 			# Set pricetags
 			frame = buildTxFrame(row[0], data=buildProductInfoJSON(row[1], int(row[2])))
 			COM.write(frame)
+		# TODO: wait for transmit status frame
+		
 	svStatusBar.set("All pricetags have been synchronized!")
 			
 	COM.close()
@@ -367,7 +372,7 @@ def linkDeviceProduct():
 	id_int = int(id)
 	
 	# update record
-	cur.execute("Update pricetag SET product_id=? WHERE addr64=?", (id_int, addr64))
+	cur.execute("UPDATE pricetag SET product_id=? WHERE addr64=?", (id_int, addr64))
 	if cur.rowcount == 0:
 		svStatusBar.set("Error: Pricetag's address not found in database!")
 		return
@@ -381,6 +386,13 @@ def linkDeviceProduct():
 		# refresh device list
 		refreshDevice()
 		return
+		
+def updateAllPrice(factor):
+	global db, cur
+	
+	cur.execute("UPDATE product SET  price = ROUND(price * %f, 0)" % factor)
+	syncAllTag()
+	return
 
 '''
 GUI Callback functions
@@ -432,6 +444,12 @@ def cbSyncOneTag():
 	
 	syncOneTag(addr64)
 	return
+	
+def cbIncreasePrices():
+	updateAllPrice(1.1)
+
+def cbDecreasePrices():
+	updateAllPrice(0.9)
 
 '''
 GUI setup
@@ -515,9 +533,9 @@ btnSyncTag = tk.Button(fmControls, width=12, text="Sync selected\npricetag", com
 btnSyncTag.pack()
 btnSyncAllTag = tk.Button(fmControls, width=12,text="Sync ALL\npricetags", command=syncAllTag)
 btnSyncAllTag.pack()
-btnIncreaseAll = tk.Button(fmControls, width=12,text="Increase ALL\nprice by 10%")
+btnIncreaseAll = tk.Button(fmControls, width=12,text="Increase ALL\nprice by 10%", command=cbIncreasePrices)
 btnIncreaseAll.pack()
-btnDecreaseAll = tk.Button(fmControls, width=12,text="Decrease ALL\nprice by 10%")
+btnDecreaseAll = tk.Button(fmControls, width=12,text="Decrease ALL\nprice by 10%", command=cbDecreasePrices)
 btnDecreaseAll.pack()
 lbCOM = tk.Label(fmControls, text="COM port:")
 lbCOM.pack(anchor="w")
