@@ -6,7 +6,7 @@ Project: Smart Price Tags
 Xbee Pricetag PC console
 Author: Terry Tsang
 
-v0.1.0 (2/5/2017)
+v0.1.2 (2/5/2017)
 '''
 
 import Tkinter as tk
@@ -392,6 +392,7 @@ def updateAllPrice(factor):
 	
 	cur.execute("UPDATE product SET  price = ROUND(price * %f, 0)" % factor)
 	syncAllTag()
+	refreshProduct()
 	return
 
 '''
@@ -450,6 +451,12 @@ def cbIncreasePrices():
 
 def cbDecreasePrices():
 	updateAllPrice(0.9)
+	
+def cbReloadDB():
+	svStatusBar.set("Reloading...")
+	refreshDevice()
+	refreshProduct()
+	svStatusBar.set("Database reloaded!")
 
 '''
 GUI setup
@@ -524,9 +531,11 @@ btnRemoveProduct.pack(side="left")
 btnUpdateProduct = tk.Button(fmProductCtrl, text="Update product", command=updateProduct)
 btnUpdateProduct.pack(side="left")
 
-# 3. Controls for pricetag editor
+# 3. Global controls
 fmControls = tk.Frame(root)
 fmControls.grid(row=0, column=1, rowspan=2)
+btnLinkTag = tk.Button(fmControls, width=12, text="Reload\ndatabase", command=cbReloadDB)
+btnLinkTag.pack()
 btnLinkTag = tk.Button(fmControls, width=12, text="Link pricetag\nto selected\nproduct", command=linkDeviceProduct)
 btnLinkTag.pack()
 btnSyncTag = tk.Button(fmControls, width=12, text="Sync selected\npricetag", command=cbSyncOneTag)

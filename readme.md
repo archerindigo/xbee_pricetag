@@ -36,6 +36,13 @@ Group members:
 - High memory usage by ArduinoJSON and Adafruit_SSD1306 OLED driver
 
 ### Update Notes for Console Program (xbee_pricetag_console)
+**v0.1.2 (2/5/2017)**
+[New features]
+- Reload database
+
+[Bug fix]
+- Product list didn't refresh after updating all prices
+
 **v0.1.1 (2/5/2017)**
 [New features]
 - Increase/Decrease all prices by 10%
