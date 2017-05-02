@@ -37,4 +37,4 @@ Group members:
 
 ### Update Notes for Console Program (xbee_pricetag_console)
 **v0.1.0 (2/5/2017)**
-- First version with full function
+- First version with all basic function implemented (Expect increse/decrease all price)
