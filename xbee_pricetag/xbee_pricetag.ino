@@ -6,7 +6,7 @@
  * Arduino Xbee Price Tag Controller
  * Author: Terry Tsang, William Wong
  * 
- * v0.2.0 (5/5/2017)
+ * v0.2.1 (5/5/2017)
  */
 
 #define DEBUG 0
@@ -163,7 +163,7 @@ void loop() {
   /*
    * 2. Update tag
    */
-  char JSONdata[80];
+  char JSONdata[60];
   strcpy(JSONdata, rx.getData());
   if (updateSignal) {
     updateSignal = 0;  // Reset signal

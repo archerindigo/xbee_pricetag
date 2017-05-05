@@ -15,12 +15,22 @@ Group members:
 - Alison Wong
 
 ### Update Notes for Arduino Pricetag Controller (xbee_pricetag)
+**v0.2.1 (5/5/2017)**
+[New features]
+- Shutdown NFC module when tag writing is not required to avoid interference and to save power
+
+[Changes]
+- Reduce JSON data buffer from 80 to 60 byte
+
+[Known issues]
+- Arduino Uno has insufficient memory to implement NFC feature.
+
 **v0.2.0 (5/5/2017)**
 [New features]
 - NFC tag writing supported (Write product information to a tag so that customers can use thier mobile phone to record the products)
 - Compatible with Arduino Mega
 
-[Changed]
+[Changes]
 - Software serial pin changed to pin 10, 11
 - Increased serial buffer size from 60 bytes to 80 bytes
 
