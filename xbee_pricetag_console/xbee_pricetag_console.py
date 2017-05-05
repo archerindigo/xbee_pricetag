@@ -6,7 +6,7 @@ Project: Smart Price Tags
 Xbee Pricetag PC console
 Author: Terry Tsang
 
-v0.1.2 (2/5/2017)
+v0.1.3 (5/5/2017)
 '''
 
 import Tkinter as tk
@@ -189,7 +189,7 @@ def addDevice():
 	try:
 		cur.execute("INSERT INTO pricetag VALUES (?, ?)", (addr64, None))
 		db.commit()
-		refreshDevice()
+		refreshDevice()	# refresh device list
 		svStatusBar.set("Device added: " + addr64)
 	except sqlite3.IntegrityError:
 		svStatusBar.set("Address already exist in database!")
@@ -444,6 +444,7 @@ def cbSyncOneTag():
 		return
 	
 	syncOneTag(addr64)
+	svStatusBar.set("Packet sent to pricetag " + addr64)
 	return
 	
 def cbIncreasePrices():

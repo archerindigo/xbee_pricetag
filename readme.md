@@ -14,7 +14,31 @@ Group members:
 - Alan Chan
 - Alison Wong
 
-### Update Notes for Arduino controller (xbee_pricetag)
+### Update Notes for Arduino Pricetag Controller (xbee_pricetag)
+**v0.2.0 (5/5/2017)**
+[New features]
+- NFC tag writing supported (Write product information to a tag so that customers can use thier mobile phone to record the products)
+- Compatible with Arduino Mega
+
+[Changed]
+- Software serial pin changed to pin 10, 11
+- Increased serial buffer size from 60 bytes to 80 bytes
+
+[Bug fix]
+- Resolved problem when product data packet is too large 
+
+[Miscellaneous]
+- Add indent to DEBUG macro tag
+
+[Known issues]
+- Arduino would halt if NFC module cannot be initialized
+- Arduino 
+
+[Notes]
+- PN532 is possible to emluate as NFC tag but it is not developed in this program yet
+- PN532 supports I2C, SPI and HSU. The program is using I2C for communication
+- Due to insufficient memory, do not enable DEBUG mode when compiling into Arduino Uno
+
 **v0.1.1 (21/4/2017)**
 [Bug fix]
 - Resolved memory leak by ArduinoJSON and RxPacket
@@ -36,6 +60,10 @@ Group members:
 - High memory usage by ArduinoJSON and Adafruit_SSD1306 OLED driver
 
 ### Update Notes for Console Program (xbee_pricetag_console)
+**v0.1.3 (5/5/2017)**
+[Bug fix]
+- Status bar not updated after synchronzing one tag
+
 **v0.1.2 (2/5/2017)**
 [New features]
 - Reload database
